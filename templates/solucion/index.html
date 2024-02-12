@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>PDF IMAGE TO WORD</title>
+  <title>PDF TO WORD</title>
   <style>
     .loading-image {
       display: none;
@@ -47,7 +47,7 @@
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
           <h1>Soluciones Cenabast</h1>
-          <h2>IMAGE PDF A WORD</h2>
+          <h2>PDF A WORD</h2>
           <div class="mb-3">
             <form action="" method="post" enctype="multipart/form-data">
               {% csrf_token %}
@@ -64,8 +64,16 @@
         </div>
       </div>
     </div>
+  
   </section>
   <!-- End Hero -->
+  <div class="progress">
+    <div class="container-fluid" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+      <div id="progress-bar" style="width: 0%; height: 100%; background: rgb(5, 136, 55);"></div>
+    </div>
+  </div>
+
+
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="footer-top">
@@ -86,6 +94,21 @@
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <!-- Vendor JS Files -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+      function updateProgress() {
+          $.get('/get_progress/', function(data) {
+              $('#progress-bar').css('width', data.progress + '%');
+          });
+      }
+  
+      setInterval(updateProgress, 1000);
+  });
+  </script>
+
+  
   <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
   <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
